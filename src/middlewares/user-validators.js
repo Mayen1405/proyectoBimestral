@@ -68,4 +68,12 @@ export const updateProfilePictureValidator = [
     handleErrors
 ]
 
+export const adminValidator = [
+    param("uid").isMongoId().withMessage("no es un admin valido"),
+    param("uid").custom(roleIsAdmin),
+    validarCampos,
+    deleteFileOnError,
+    handleErrors
+]
+
 

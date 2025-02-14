@@ -28,4 +28,15 @@ export const uidMatterExist = async(uid = "") =>{
     if(!exist){
         throw new Error("No existe el ID proporcionado");
     }
+};
+
+export const roleIsAdmin = async(uid = "") =>{
+    const user = await User.findById(uid);
+
+    if(user.role !== 'ADMIN_ROLE'){
+        throw new Error("el usuario no es un admin");
+    }
+
+    return user;
 }
+
