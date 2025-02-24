@@ -7,7 +7,7 @@ import express from "express";
 import { connectionDB } from "./mongo.js";
 import authRoutes from "../src/Auth/auth.routes.js";
 import userRoutes from "../src/User/user.routes.js";
-import matterRoutes from "../src/matters/matter.routes.js";
+import adminRoutes from "../src/Admin/admin.routes.js";
 import apiLimiter from "../src/middlewares/validation-cant-peticiones.js";
 
 
@@ -31,7 +31,7 @@ const connectionMongo = async() =>{
 const routes = (app) =>{
     app.use("/studentAdministrator/v1/auth", authRoutes);
     app.use("/studentAdministrator/v1/user", userRoutes);
-    app.use("/studentAdministrator/v1/matter", matterRoutes);
+    app.use("/studentAdministrator/v1/admin", adminRoutes);
 };
 
 export const initServer = () => {
