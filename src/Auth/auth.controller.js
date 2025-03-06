@@ -1,6 +1,6 @@
 import { hash, verify } from "argon2"
 import User from "../User/user.model.js"
-import { generateJWT } from "../helpers/generate-jwt.js";
+import { generateJWT } from "../helpers/generate-jwr.js";
 
 export const register = async (req, res) => {
     try {

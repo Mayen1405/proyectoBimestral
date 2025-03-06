@@ -16,11 +16,11 @@ const productSchema = new Schema({
         required: [true, "se requiere una categoria"]
     },
     price: {
-        type: number,
+        type: String,
         required: true,
     },
     stock: {
-        type: number,
+        type: String,
         required: true,
     },
     status: {
@@ -32,7 +32,7 @@ const productSchema = new Schema({
     timestamps: true
 });
 
-userSchema.methods.toJSON = function(){
+productSchema.methods.toJSON = function(){
     const {_v, password, _id, ...product} = this.toObject()
     product.prod = _id;
     return product;
