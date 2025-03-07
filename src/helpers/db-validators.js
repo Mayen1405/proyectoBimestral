@@ -1,5 +1,8 @@
 import User from "../User/user.model.js";
-import Matter from "../materia/materia.model.js"
+import Product from "../product/product.model.js";
+import Category from "../category/category.model.js"
+
+/* usuarios db-validators*/
 
 export const emailExist = async(email = "") =>{
     const exist = await User.findOne({email});
@@ -16,19 +19,14 @@ export const usernameExists = async (username = "") => {
     }
 }
 
-export const uidExist = async(uid = "") =>{
+export const userExists = async(uid = "") =>{
     const exist = await User.findById(uid);
     if(!exist){
         throw new Error("No exixte el ID proporcionado");
     }
 };
 
-export const uidMatterExist = async(uid = "") =>{
-    const exist = await Matter.findById(uid);
-    if(!exist){
-        throw new Error("No existe el ID proporcionado");
-    }
-};
+/* admin db validator */
 
 export const roleIsAdmin = async(uid = "") =>{
     const user = await User.findById(uid);
@@ -39,4 +37,30 @@ export const roleIsAdmin = async(uid = "") =>{
 
     return user;
 }
+
+/* product db validator */
+
+export const productExist = async (name = "") => {
+    const existe = await Product.findOne({name})
+    if(existe){
+        throw new Error(`este producto ${name} ya esta registrado`)
+    }
+}
+
+export const prodIsInStock = async(prod = "") =>{
+    const exist = await Product.findById(prod);
+    if(!exist){
+        throw new Error("No se encuentra en stock");
+    }
+};
+
+/* category db validator */
+export const categoryExists = async (id) => {
+    const categoryExists = await Category.findById(id);
+    if (!categoryExists) {
+        throw new Error(`Error, la categoría con el ID ${id} no existe`);
+    }
+};
+
+
 

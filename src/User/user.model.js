@@ -16,11 +16,6 @@ const userSchema = new Schema({
         required: true,
         unique:true
     },
-    description:{
-        type: String,
-        required: [true, "breve descripcion requerida"],
-        unique: true
-    },
     email: {
         type: String,
         required: [true, "Email is required"],
