@@ -1,26 +1,25 @@
-import jwt from "jsonwebtoken";
-import { token } from "morgan";
+import jwt from "jsonwebtoken"
 
-export const generateJWT = (uid = " ") =>{
-    return new Promise((resolve,reject) =>{
-        const payload = {uid}
+export const generateJWT = (uid = " ") => {
+    return new Promise((resolve, reject) => {
+        const payload = { uid }
 
         jwt.sign(
             payload,
-            process.env.SECRET_OR_PRIVATE_KEY,
+            process.env.KEY,
             {
                 expiresIn: "1h"
             },
             (err, token) =>{
                 if(err){
                     reject({
-                        succes: false,
+                        success: false,
                         message: err
                     })
                 }else{
-                    resolve(token);
-                };
+                    resolve(token)
+                }
             }
         )
-    }) 
+    })
 }

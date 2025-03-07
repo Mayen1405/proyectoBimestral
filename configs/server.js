@@ -7,8 +7,11 @@ import express from "express";
 import { connectionDB } from "./mongo.js";
 import authRoutes from "../src/Auth/auth.routes.js";
 import userRoutes from "../src/User/user.routes.js";
-import matterRoutes from "../src/matters/matter.routes.js";
-import apiLimiter from "../src/middlewares/validation-cant-peticiones.js";
+import productRoutes from "../src/Product/product.routes.js";
+import apiLimiter from "../src/middlewares/rate-limit-validator.js";
+import categoryRoutes from "../src/category/category.routes.js";
+import invoiceRoutes from "../src/invoice/invoice.routes.js";
+import shopRoutes from "../src/shop/shop.routes.js";
 
 
 const middlewares = (app) => {
@@ -29,9 +32,12 @@ const connectionMongo = async() =>{
 };
 
 const routes = (app) =>{
-    app.use("/studentAdministrator/v1/auth", authRoutes);
-    app.use("/studentAdministrator/v1/user", userRoutes);
-    app.use("/studentAdministrator/v1/matter", matterRoutes);
+    app.use("/proyectoBimestral/v1/auth", authRoutes);
+    app.use("/proyectoBimestral/v1/user", userRoutes);
+    app.use("/proyectoBimestral/v1/product", productRoutes);
+    app.use("/proyectoBimestral/v1/category", categoryRoutes);
+    app.use("/proyectoBimestral/v1/invoice", invoiceRoutes);
+    app.use("/proyectoBimestral/v1/shop", shopRoutes);
 };
 
 export const initServer = () => {
