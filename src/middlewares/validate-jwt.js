@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import User from "../User/user.model"
+import User from '../User/user.model.js'
 
 export const validateJWT = async(req, res, next) =>{
     try{
@@ -14,7 +14,7 @@ export const validateJWT = async(req, res, next) =>{
 
         token = token.replace(/^Bearer \s+/, "")
 
-        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
+        const { uid } = jwt.verify(token, process.env.KEY)
         const user = await User.findById(uid)
 
         if(!user){
