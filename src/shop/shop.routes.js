@@ -32,7 +32,7 @@ const router = Router();
  *       500:
  *         description: Error adding products to shop
  */
-router.post('/shop', validateJWT, addProductsValidator, addProductsToShop);
+router.post('/addShop', validateJWT, addProductsValidator, addProductsToShop);
 
 /**
  * @swagger
